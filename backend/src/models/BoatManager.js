@@ -12,6 +12,14 @@ class BoatManager extends AbstractManager {
     // Return the array of boats
     return rows;
   }
+
+  async update(id, coordX, coordY) {
+    const [rows] = await this.database.query(
+      "update boat set coord_x = ?, coord_y = ? where id = ?",
+      [coordX, coordY, id]
+    );
+    return rows;
+  }
 }
 
 module.exports = BoatManager;
